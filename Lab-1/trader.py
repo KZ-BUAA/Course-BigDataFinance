@@ -160,6 +160,9 @@ for one_step in opr:
     buy = buy[~buy['lots'].isin([0])]
     sell = sell[~sell['lots'].isin([0])]
 
+    buy['lots'] = buy['lots'].astype(float)
+    sell['lots'] = sell['lots'].astype(float)
+
     # 每次操作后重新排列两张表
     buy = buy.sort_values(by='price',ascending=False).reset_index(drop=True)
     sell = sell.sort_values(by='price',ascending=True).reset_index(drop=True)
