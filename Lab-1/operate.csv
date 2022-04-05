@@ -1,0 +1,16 @@
+﻿op,order_type,price,lots
+buy,limit order,1299.98,10
+sell,limit order,1300.03,10
+buy,market order,,5
+sell,market order,,10
+buy,market order,,2
+buy,limit order,1299.99,2
+buy,market order,,100
+sell,limit order,1300,10
+sell,limit order,1300.01,30
+sell,market order,,30
+buy,market order,,20
+buy,limit order,1299.98,20
+buy,market order,,50
+sell,limit order,1299.99,20
+sell,market order,,60
