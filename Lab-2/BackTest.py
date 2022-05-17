@@ -112,6 +112,7 @@ def main():
 
     CAPM, CAPM_num = backtest(stock, pd.read_excel('capm.xlsx'), 5, 1000)
     ThreeF, ThreeF_num = backtest(stock, pd.read_excel('ThreeF.xlsx'), 5, 1000)
+    FiveF, FiveF_num = backtest(stock, pd.read_excel('FiveF.xlsx'), 5, 1000)
 
     hs, hs_rate = get_300(HuShen, 1000, list(CAPM_num['date']))
 
@@ -120,13 +121,14 @@ def main():
     mpl.rcParams['axes.unicode_minus'] = False
     plt.plot(CAPM_num['date'], CAPM_num['money'])
     plt.plot(ThreeF_num['date'], ThreeF_num['money'])
+    plt.plot(FiveF_num['date'], FiveF_num['money'])
 
     plt.plot(CAPM_num['date'], hs)
     plt.title('资金变动图')
     plt.xlabel('日期')
     plt.ylabel('资金')
     plt.axhline(1000, color='grey')
-    plt.legend(['CAPM', '三因子', '沪深300', '起始资金线'])
+    plt.legend(['CAPM', '三因子', '五因子', '沪深300', '起始资金线'])
     plt.savefig('资金变化图.png')
 
     plt.clf()
@@ -134,17 +136,18 @@ def main():
     """收益率变动图"""
     plt.plot(CAPM_num['date'], CAPM_num['rate'])
     plt.plot(ThreeF_num['date'], ThreeF_num['rate'])
-
+    plt.plot(FiveF_num['date'], FiveF_num['rate'])
     plt.plot(CAPM_num['date'], hs_rate)
     plt.title('收益率变动图')
     plt.xlabel('日期')
     plt.ylabel('收益率')
     plt.axhline(0, color='grey')
-    plt.legend(['CAPM', '三因子', '沪深300', 'x=0'])
+    plt.legend(['CAPM', '三因子', '五因子', '沪深300', 'x=0'])
     plt.savefig('收益率变化图.png')
 
     print('CAPM方法收益率为{}%'.format((CAPM_num['money'].iloc[-1] - 1000) / 10))
     print('三因子方法收益率为{}%'.format((ThreeF_num['money'].iloc[-1] - 1000) / 10))
+    print('五因子方法收益率为{}%'.format((FiveF_num['money'].iloc[-1] - 1000) / 10))
 
 
 if __name__ == '__main__': main()
