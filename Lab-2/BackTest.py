@@ -78,7 +78,7 @@ def backtest(stock, op, step, init):
     money.append(temp_money)
     rate.append((temp_money - init) / init)
 
-    op_df = pd.DataFrame(list(zip(date_list, stock_list, share_list)), columns=['date', 'stock_name', 'buy'])
+    op_df = pd.DataFrame(list(zip(date_list, stock_list, share_list)), columns=['date', 'stock_name', 'buy_num'])
     d = list(op_df['date'].unique())
     d.append(close_date)
     num_df = pd.DataFrame(list(zip(d, money, rate)), columns=['date', 'money', 'rate'])
@@ -148,6 +148,10 @@ def main():
     print('CAPM方法收益率为{}%'.format((CAPM_num['money'].iloc[-1] - 1000) / 10))
     print('三因子方法收益率为{}%'.format((ThreeF_num['money'].iloc[-1] - 1000) / 10))
     print('五因子方法收益率为{}%'.format((FiveF_num['money'].iloc[-1] - 1000) / 10))
+
+    CAPM.to_csv('CAPM选股策略.csv', encoding='utf-8', index=False)
+    ThreeF.to_csv('三因子选股策略.csv', encoding='utf-8', index=False)
+    FiveF.to_csv('五因子选股策略.csv', encoding='utf-8', index=False)
 
 
 if __name__ == '__main__': main()
